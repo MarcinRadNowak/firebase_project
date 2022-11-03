@@ -1,0 +1,25 @@
+{
+  "name": "firebase_new_project",
+  "version": "1.0.0",
+  "description": "My new project in Firebase",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarcinRadNowak/firebase_project.git"
+  },
+  "author": "Marcin Nowak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarcinRadNowak/firebase_project/issues"
+  },
+  "homepage": "https://github.com/MarcinRadNowak/firebase_project#readme",
+  "dependencies": {
+    "firebase": "^9.13.0",
+    "vite": "^3.2.2"
+  }
+}
