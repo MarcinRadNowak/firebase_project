@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/MarcinRadNowak/firebase_project#readme",
   "dependencies": {
+    "bootstrap": "^5.2.2",
     "firebase": "^9.13.0",
     "vite": "^3.2.2"
   }
