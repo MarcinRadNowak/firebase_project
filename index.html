@@ -7,30 +7,155 @@
    <title>Library</title>
 </head>
 <body>
-   <h1>Virtual Library</h1>
-   <script type="module" src="index.js"></script>
-</body>
-</html>
+   <div class="container">
+      <h1 class="mb-1">Czytelnicy naszej biblioteki</h1>
 
-<!--
-   Utwórz nowy projekt Firebase
-Dodaj aplikację web dla projektu
-Utwórz kolekcję members  , która będzie przechowywała informację o członkach biblioteki.
-Utwórz nowy projekt JS w Visual Studio. Dodaj konfigurację package.json, zainstaluj potrzebne paczki vite  oraz firebase , jeśli chcesz skorzystaj z firebase
-Dodaj konfigurację swojej aplikacji Firebase do projektu JS.
-Wyświetl listę członków biblioteki
-Utwórz możliwość dodawania nowych członków
-Utwórz możliwość  edycji danych wybranego członka
-Utwórz możliwość usuwania
-:exploding_head: Dodaj możliwość sortowania listy po wybranych kolumnach np. nazwisko, imię itd
-:exploding_head: Dodaj możliwość wyszukiwania użytkowników
-Utwórz kolekcję books  , która będzie przechowywała informację o książkach
-Utwórz możliwość dodawania nowej książki
-Utwórz możliwość edycji nowej książki
-Utwórz możliwość usuwania nowej książki
-Dodaj funkcjonalność, która pozwoli na oznaczenie książki jak wypożyczona
-:exploding_head: Dodaj możliwość wyszukiwania książek
-:exploding_head: Dodaj przycisk filtru, który wyświetli tylko dostępne ( niewypożyczone książki )
- :dart:Dodaj możliwość przypisywania wypożyczenia książki do wybranego użytkownika
-Utwórz repozytorium, wrzuć kod i pochwal się 
--->
+      <ul class="list-group mb-5" id="membersList"></ul>
+
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#addMemberModal"
+      >
+        Dodaj czytelnika
+      </button>
+
+      <div class="modal fade" id="editMemberModal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title fs-5">Edytuj czytelnika</h2>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+            </button>
+            </div>
+            <div class="modal-body">
+              <form id="editMemberForm" validate>
+                <label class="form-label">Imię:</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  name="fname"
+                  placeholder="Wpisz imię nowego czytelnika..."
+                  minlength="3"
+                  required
+                />
+                <label class="form-label">Nazwisko:</label>
+                <input
+                  class="form-control mb-3"
+                  type="text"
+                  name="lname"
+                  placeholder="Wpisz nazwisko nowego czytelnika..."
+                  min="3"
+                  required
+                />
+                <label class="form-label">Numer Id:</label>
+                <input
+                  class="form-control mb-3"
+                  type="number"
+                  name="member_id"
+                  required
+                />
+                <input type="hidden" name="id" required />
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                form="editMemberForm"
+                type="submit"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+                data-bs-target="#editMemberModal"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="modal fade"
+        id="addMemberModal"
+        tabindex="-1"
+        aria-labelledby="addMemberModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="addMemberModalLabel">
+                Dodaj nowego czytelnika
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form class="mb-5" id="addMemberForm" validate>
+                <label class="form-label">Imię:</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  name="fname"
+                  placeholder="Wpisz imię nowego czytelnika..."
+                  minlength="3"
+                  required
+                />
+                <label class="form-label">Nazwisko:</label>
+                <input
+                  class="form-control mb-3"
+                  type="text"
+                  name="lname"
+                  placeholder="Wpisz nazwisko nowego czytelnika..."
+                  min="3"
+                  required
+                />
+                <label class="form-label">Numer Id:</label>
+                <input
+                  class="form-control mb-3"
+                  type="number"
+                  name="member_id"
+                  value="0"
+                />
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                form="addMemberForm"
+                type="submit"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   <script type="module" src="index.js"></script>
+ </body>
+</html>

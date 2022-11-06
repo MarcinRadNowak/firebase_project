@@ -1,33 +1,29 @@
-import { updateDoc, Timestamp, doc, collection } from "firebase/firestore";
-import { renderTaskList } from "./list";
+import { updateDoc, doc, collection } from "firebase/firestore";
+import { renderMemberList } from "./list";
 
-export const initEditTaskForm = (database) => {
-  const editTaskForm = document.querySelector("#editTaskForm");
-  const tasksCollection = collection(database, "tasks");
+export const initEditMemberForm = (database) => {
+  const editMemberForm = document.querySelector("#editMemberForm");
+  const membersCollection = collection(database, "members");
 
-  if (editTaskForm) {
-    editTaskForm.addEventListener("submit", (event) => {
+  if (editMemberForm) {
+    editMemberForm.addEventListener("submit", (event) => {
       event.preventDefault();
 
-      const formData = new FormData(editTaskForm);
+      const formData = new FormData(editMemberForm);
 
-      const deadline = formData.get("deadline");
-      const deadlineDate = new Date(deadline);
-      const deadlineTimestamp = Timestamp.fromDate(deadlineDate);
-
-      const docRef = doc(database, "tasks", formData.get("id"));
-      const modalRef = new bootstrap.Modal("#editTaskModal");
+      const docRef = doc(database, "members", formData.get("id"));
+      const modalRef = new bootstrap.Modal("#editMemberModal");
 
       updateDoc(docRef, {
-        title: formData.get("title"),
-        deadline: deadlineTimestamp,
-        order: +formData.get("order"),
+        fname: formData.get("fname"),
+        lname: formData.get("lname"),
+        member_id: formData.get("member_id"),
       }).then((result) => {
-        console.log("Zaktualizowano zadanie");
+        console.log("Zaktualizowano czytelnika");
 
         modalRef.hide();
 
-        renderTaskList(tasksCollection, database);
+        renderMemberList(membersCollection, database);
       });
     });
   }

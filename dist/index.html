@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Firebase</title>
+  <script type="module" crossorigin src="/assets/index.0ac3fd9e.js"></script>
+  <link rel="stylesheet" href="/assets/index.a1a5b93f.css">
+</head>
+
+<body>
+  <h1 class="mb-1">TO-DO list</h1>
+  <h2>Add task</h2>
+  <ul class="list-group" id="tasksList"></ul>
+  <form id="addTaskForm" validate> <!--walidacja formularza-->
+    <label for="">Tytuł:</label>
+    <input class="form-control" type="text" name="title" required minlength="5" maxlength="20"/>
+    <label for="">Deadline:</label>
+    <input type="date" name="deadline" required min="2022-10-18" max="2022-12-31"/>
+    <button type="submit">Dodaj</button>
+  </form>
+  <h2>Edit task</h2>
+  <form  class="mb-5" id="editTaskForm" validate> <!--walidacja formularza-->
+    <label for="">Tytuł:</label>
+    <input type="text" name="title" required minlength="5" maxlength="20"/>
+    <label for="">Deadline:</label>
+    <input type="date" name="deadline" required min="2022-10-18" max="2022-12-31"/>
+    <input type="hidden" name="id" required>
+    <button type="submit">Zapisz</button>
+  </form>
+  
+</body>
+
+

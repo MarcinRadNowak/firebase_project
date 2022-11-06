@@ -1,26 +1,26 @@
-import { Timestamp, addDoc } from "firebase/firestore";
+import { addDoc } from "firebase/firestore";
 
-export const initAddTaskForm = (tasksCollection) => {
-  const addTaskForm = document.querySelector("#addTaskForm");
+export const initAddMemberForm = (membersCollection) => {
+  const addMemberForm = document.querySelector("#addMemberForm");
 
-  if (addTaskForm) {
-    addTaskForm.addEventListener("submit", (event) => {
+  if (addMemberForm) {
+    addMemberForm.addEventListener("submit", (event) => {
       event.preventDefault();
 
-      const formData = new FormData(addTaskForm);
+      const formData = new FormData(addMemberForm);
 
-      const deadlineDate = new Date(formData.get("deadline"));
-      const deadlineTimestamp = Timestamp.fromDate(deadlineDate);
+      // const deadlineDate = new Date(formData.get("deadline"));
+      // const deadlineTimestamp = Timestamp.fromDate(deadlineDate);
 
-      addDoc(tasksCollection, {
-        title: formData.get("title"),
-        deadline: deadlineTimestamp,
-        done: false,
-        order: +formData.get("order"),
+      addDoc(membersCollection, {
+        fname: formData.get("fname"),
+        lname: formData.get("lname"),
+        member_id: formData.get("number_id"),
       }).then((result) => {
-        console.log("Zadanie zostało dodane do firestore");
+        console.log("Czytelnik został dodany do firestore");
         console.log(result);
       });
     });
   }
 };
+
