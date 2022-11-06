@@ -15,7 +15,7 @@ export const initAddMemberForm = (membersCollection) => {
       addDoc(membersCollection, {
         fname: formData.get("fname"),
         lname: formData.get("lname"),
-        member_id: formData.get("number_id"),
+        member_id: formData.get("member_id"),
       }).then((result) => {
         console.log("Czytelnik został dodany do firestore");
         console.log(result);

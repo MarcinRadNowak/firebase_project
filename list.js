@@ -2,7 +2,6 @@ import {
   deleteDoc,
   doc,
   getDocs,
-  limit,
   orderBy,
   query,
   updateDoc,
@@ -16,7 +15,8 @@ export const renderMemberList = (membersCollection, db) => {
   const membersList = document.querySelector("#membersList");
 
   if (membersList) {
-    const membersQuery = query(membersCollection, orderBy("fname"));
+    const order = "asc";
+    const membersQuery = query(membersCollection, orderBy("member_id", order));
 
     getDocs(membersQuery).then((result) => {
       membersList.innerHTML = "";
@@ -27,7 +27,7 @@ export const renderMemberList = (membersCollection, db) => {
 
         const editButton = `<button class="btn btn-primary" data-edit="${memberId}" data-fname="${member.fname}" data-lname="${member.lname}" data-member_id="${member.member_id}">Edit</button>`;
         const deleteButton = `<button class="btn btn-danger" data-delete="${memberId}">Delete</button>`;
-        const li = `<li class="list-group-item d-flex justify-content-between align-items-center"><span>${member.fname} ${member.lname} - ${member.member_id}</span> <div>${editButton} ${deleteButton}</div></li>`;
+        const li = `<li class="list-group-item d-flex justify-content-between align-items-center"><span>${member.member_id}. ${member.fname} ${member.lname}</span> <div>${editButton} ${deleteButton}</div></li>`;
 
         membersList.innerHTML += li;
       });
