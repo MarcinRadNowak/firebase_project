@@ -52,7 +52,7 @@
                   type="text"
                   name="lname"
                   placeholder="Wpisz nazwisko nowego czytelnika..."
-                  min="3"
+                  minlength="3"
                   required
                 />
                 <label class="form-label">Numer Id:</label>
@@ -60,6 +60,7 @@
                   class="form-control mb-3"
                   type="number"
                   name="member_id"
+                  min="1"
                   required
                 />
                 <input type="hidden" name="id" required />
@@ -124,7 +125,7 @@
                   type="text"
                   name="lname"
                   placeholder="Wpisz nazwisko nowego czytelnika..."
-                  min="3"
+                  minlength="3"
                   required
                 />
                 <label class="form-label">Numer Id:</label>
@@ -132,7 +133,7 @@
                   class="form-control mb-3"
                   type="number"
                   name="member_id"
-                  value="0"
+                  min="1"
                 />
               </form>
             </div>
