@@ -77,3 +77,76 @@ const handleDeleteButtons = (db) => {
     })
   );
 };
+
+// books
+
+export const renderBookList = (booksCollection, db) => {
+  if (!booksCollection) {
+    throw new Error("Parametr booksCollection nie został podany");
+  }
+
+  const booksList = document.querySelector("#booksList");
+
+  if (booksList) {
+    const order = "asc";
+    const booksQuery = query(booksCollection, orderBy("title", order));
+
+    getDocs(booksQuery).then((result) => {
+      booksList.innerHTML = "";
+
+      result.docs.forEach((doc) => {
+        const book = doc.data();
+        const bookId = doc.id;
+
+        const editButton = `<button class="btn btn-primary" data-edit="${bookId}" data-fname="${book.fname}" data-lname="${book.lname}" data-title="${book.title}">Edit</button>`;
+        const deleteButton = `<button class="btn btn-danger" data-delete="${bookId}">Delete</button>`;
+        const li = `<li class="list-group-item d-flex justify-content-between align-items-center"><span>${book.fname} ${book.lname} - ${book.title}</span> <div>${editButton} ${deleteButton}</div></li>`;
+
+        booksList.innerHTML += li;
+      });
+
+      handleEditBookButtons();
+      handleDeleteBookButtons(db);
+    });
+  }
+};
+
+const handleEditBookButtons = () => {
+  const buttons = document.querySelectorAll("[data-edit]");
+  const editBookForm = document.querySelector("#editBookForm");
+  const fnameInput = editBookForm.querySelector("[name='fname']");
+  const lnameInput = editBookForm.querySelector("[name='lname']");
+  const titleInput = editBookForm.querySelector("[name='title']");
+  const idInput = editBookForm.querySelector("[name='id']");
+
+  buttons.forEach((button) =>
+    button.addEventListener("click", (event) => {
+      const modalRef = new bootstrap.Modal("#editBookModal");
+      const element = event.target;
+
+      modalRef.show();
+
+      fnameInput.value = element.dataset.fname;
+      lnameInput.value = element.dataset.lname;
+      idInput.value = element.dataset.edit;
+      titleInput.value = element.dataset.title;
+    })
+  );
+};
+
+const handleDeleteBookButtons = (db) => {
+  const buttons = document.querySelectorAll("[data-delete]");
+
+  buttons.forEach((button) =>
+    button.addEventListener("click", (event) => {
+      const element = event.target;
+      const bookId = element.dataset.delete;
+
+      const docRef = doc(db, "books", bookId);
+
+      deleteDoc(docRef).then((result) => {
+        element.parentNode.parentNode.remove();
+      });
+    })
+  );
+};

@@ -157,6 +157,155 @@
           </div>
         </div>
       </div>
+      <br><br><br>
+      <h1 class="mb-1">Lista książek</h1>
+
+      <ul class="list-group mb-5" id="booksList"></ul>
+
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#addBookModal"
+      >
+        Dodaj książkę
+      </button>
+
+      <div class="modal fade" id="editBookModal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title fs-5">Edytuj książkę</h2>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+            </button>
+            </div>
+            <div class="modal-body">
+              <form id="editBookForm" validate>
+                <label class="form-label">Imię autora:</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  name="fname"
+                  placeholder="Wpisz imię autora..."
+                  minlength="3"
+                  required
+                />
+                <label class="form-label">Nazwisko autora:</label>
+                <input
+                  class="form-control mb-3"
+                  type="text"
+                  name="lname"
+                  placeholder="Wpisz nazwisko autora..."
+                  minlength="3"
+                  required
+                />
+                <label class="form-label">Tytuł:</label>
+                <input
+                  class="form-control mb-3"
+                  type="text"
+                  name="title"
+                  minlength="3"
+                  required
+                />
+                <input type="hidden" name="id" required />
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                form="editBookForm"
+                type="submit"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+                data-bs-target="#editBookModal"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="modal fade"
+        id="addBookModal"
+        tabindex="-1"
+        aria-labelledby="addBookModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="addBookModalLabel">
+                Dodaj nową książkę
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form class="mb-5" id="addBookForm" validate>
+                <label class="form-label">Imię:</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  name="fname"
+                  placeholder="Wpisz imię autora..."
+                  minlength="3"
+                  required
+                />
+                <label class="form-label">Nazwisko:</label>
+                <input
+                  class="form-control mb-3"
+                  type="text"
+                  name="lname"
+                  placeholder="Wpisz nazwisko autora..."
+                  minlength="3"
+                  required
+                />
+                <label class="form-label">Tytuł:</label>
+                <input
+                  class="form-control mb-3"
+                  type="text"
+                  name="title"
+                  minlength="3"
+                />
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                form="addBookForm"
+                type="submit"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
    <script type="module" src="index.js"></script>
  </body>
